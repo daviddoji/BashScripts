@@ -3,19 +3,19 @@
 DIR=Arreglados
 
 
-# si el directorio no existe lo crea
+# if DIR doesn't exist, create it
 if [ ! -d pwd/$DIR ]
 then
   mkdir $DIR
 fi
 
-# copia recursivamente desde el directorio actual todos los archivos 
-# con extension .mp4 al directorio $DIR
+# recursively copy all files from current directory 
+# with extension .mp4 to directory $DIR
 find . -name "*.mp4" -exec cp -t $DIR {} +
 
-# copia todos los subtitulos del directorio actual al directorio $DIR
+# copy all subtitles from current directory to directory $DIR
 rsync -a *.srt $DIR/
 
-# muestra notificacion de 2 s al acabar
+# show a 2 seconds notification when done
 notify-send -t 2000 "Fin de la conversión"
 #play /usr/share/sounds/freedesktop/stereo/bell.oga
