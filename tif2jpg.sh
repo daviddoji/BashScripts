@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Convert TIF files to JPG preserving name
-
 convert *.TIF -set filename: "%t" %[filename:].jpg
 
 # Wait 0.5 s and remove all TIFs
