@@ -1,6 +1,3 @@
 # BashScripts
-a few scripts for private use
 
-test
-
-other test
+Some bash scripts for private use
