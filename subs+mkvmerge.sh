@@ -7,11 +7,7 @@ done
 
 # Cambiar el nombre del archivo de video por el del archivo de subtitulos
 find . -iname "*.mp4" | while IFS= read -r f; do
-<<<<<<< HEAD
     id=$(sed -n 's/.*.[Ss]\([0-9]\+\)[Ee]\([0-9]\+\)..*/\1x\2/p' <<< "$f" | sed 's/^0\+//')
-=======
-    id=$(sed -n 's/.*.S\([0-9]\+\)E\([0-9]\+\)..*/\1x\2/p' <<< "$f" | sed 's/^0\+//')
->>>>>>> 7d4be55d53dde1a5ea73183ba2965527684d5c4b
 
     if [ -z "$id" ]; then
         echo "Warning! there's no match for $f"
