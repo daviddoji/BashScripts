@@ -8,7 +8,6 @@ done
 # Cambiar el nombre del archivo de video por el del archivo de subtitulos
 find . -iname "*.mp4" | while IFS= read -r f; do
     id=$(sed -n 's/.*.[Ss]\([0-9]\+\)[Ee]\([0-9]\+\)..*/\1x\2/p' <<< "$f" | sed 's/^0\+//')
-
     if [ -z "$id" ]; then
         echo "Warning! there's no match for $f"
     else
@@ -28,13 +27,6 @@ done
 
 # Cambia la codificación de los subtítulos en español
 for i in *"_(Español_(España)).srt"; do
-#  if chardetect $i | grep -q 'UTF-8-SIG' ; then ## si la salida contiene 'utf-8'
-#    mv "$i" "${i%%".es.srt"}.esp.srt"
-#  elif chardetect $i | grep -v 'utf-8' ; then ## si la salida no contiene 'utf-8'
-#    iconv -t=UTF-8 "$i" > "${i%%".es.srt"}.esp.srt" && rm "$i"
-#  else
-#    mv "$i" "${i%%".es.srt"}.esp.srt"
-#  fi
   ENCODE="$(file -bi "$i" | cut -d'=' -f2)"
   iconv -f "$ENCODE" -t utf8 "$i" > "${i%%"_(Español_(España)).srt"}.esp.srt" && rm "$i"
 done
